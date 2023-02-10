@@ -43,10 +43,14 @@ class UR10(ERobot):
 
         self.qr = np.array([np.pi, 0, 0, 0, np.pi / 2, 0])
         self.qz = np.zeros(6)
-
+        self.rd = np.zeros(6)
+        
         self.addconfiguration("qr", self.qr)
         self.addconfiguration("qz", self.qz)
-
+        # reference pose, arm to the right, elbow up
+        self.addconfiguration_attr(
+            "rd", np.array([-0.0000, -0.8335, 0.0940, -3.1416, 0.8312, 3.1416])
+        )
 
 if __name__ == "__main__":  # pragma nocover
 
