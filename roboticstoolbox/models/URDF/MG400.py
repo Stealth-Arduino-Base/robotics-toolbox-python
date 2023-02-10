@@ -48,8 +48,19 @@ class MG400(ERobot):
 
         # self.grippers[0].tool = SE3(0, 0, 0.1034)
 
-
-        self.qr = np.array([0, 0.3, 0, 0.2,0, 0.3, 0, 0.2,0])
+        #[j1,j2,j3_1,j3,j4_1,j4,j2_2,j3_2,j4_2]
+        j1= 0
+        j2 = 0.0
+        j3 = 0.4
+        j4 =0.0
+        
+        j3_1 = 0
+        j3_2 = j2
+        j2_2 = j2
+        j4_1 = 0
+        j4_2 = 0
+        
+        self.qr = np.array([j1,j2,j3,j3,j3,j3,j2,j3,j3])
         self.qz = np.zeros(9)
 
         self.addconfiguration("qr", self.qr)
