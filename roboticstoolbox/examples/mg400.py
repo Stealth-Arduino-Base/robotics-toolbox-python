@@ -19,9 +19,10 @@ dt = 0.05
 interp_time = 5
 wait_time = 2
 
+poses = [puma.qr, puma.qz]
+
 # Pass through the reference poses one by one.
 # This ignores the robot collisions, and may pass through itself
-poses = [puma.qz, puma.rd, puma.ru, puma.lu, puma.ld]
 for previous, target in zip(poses[:-1], poses[1:]):
     for alpha in np.linspace(0.0, 1.0, int(interp_time / dt)):
         puma.q = previous + alpha * (target - previous)
