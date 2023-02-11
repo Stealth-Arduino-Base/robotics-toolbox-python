@@ -49,16 +49,22 @@ class MG400(ERobot):
         # self.grippers[0].tool = SE3(0, 0, 0.1034)
 
         #[j1,j2,j3_1,j3,j4_1,j4,j2_2,j3_2,j4_2]
-        j1= 1
+        j1= 0
         j2 = 1
-        j3 = 0.4
+        j3 = 1
         
         #[j1,j2,j3,   j3,j3,j3,j2,j3,j3]
-        self.qr = np.array([j1,j2,j3,j3,-j2-j3,j3,j2,j3,j3])
+        self.qr = np.array([j1,j2,j3,j3,-2*j3,j3,j2,j3,j3])
         self.qz = np.zeros(9)
+
+        j1= 0
+        j2 = 0.3
+        j3 = 0.4
+        self.qt = np.array([j1,j2,j3,0,-j2-j3,j3,j2,-j3,j3+j3])
 
         self.addconfiguration("qr", self.qr)
         self.addconfiguration("qz", self.qz)
+        self.addconfiguration("qt", self.qt)
 
 
 if __name__ == "__main__":  # pragma nocover

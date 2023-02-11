@@ -12,8 +12,8 @@ import numpy as np
 puma = rp.models.MG400()
 T = puma.fkine(puma.qr)
 print(T)
-sol = puma.ikine_LM(T)
-print("residual = ", np.linalg.norm(T - puma.fkine(sol.q)))
+# sol = puma.ikine_LM(T)
+# print("residual = ", np.linalg.norm(T - puma.fkine(sol.q)))
 
 
 # puma.q = puma.qz

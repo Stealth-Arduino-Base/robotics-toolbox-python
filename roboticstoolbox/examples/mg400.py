@@ -19,7 +19,7 @@ dt = 0.05
 interp_time = 5
 wait_time = 2
 
-poses = [puma.qr, puma.qz]
+poses = [ puma.qz,puma.qt]
 
 # Pass through the reference poses one by one.
 # This ignores the robot collisions, and may pass through itself
