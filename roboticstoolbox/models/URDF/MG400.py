@@ -41,12 +41,13 @@ class MG400(ERobot):
         super().__init__(
             links,
             name=name,
-            manufacturer="Dobot",
+            manufacturer="Dobot",            
+            gripper_links=links[4],
             urdf_string=urdf_string,
             urdf_filepath=urdf_filepath,
         )
 
-        # self.grippers[0].tool = SE3(0, 0, 0.1034)
+        self.grippers[0].tool = SE3(0, 0, 0)
 
         #[j1,j2,j3_1,j3,j4_1,j4,j2_2,j3_2,j4_2]
         j1= 0
@@ -54,8 +55,8 @@ class MG400(ERobot):
         j3 = 1
         
         #[j1,j2,j3,   j3,j3,j3,j2,j3,j3]
-        self.qr = np.array([j1,j2,j3,j3,-2*j3,j3,j2,j3,j3])
-        self.qz = np.zeros(9)
+        self.qr = np.array([j1,j2,j3,j3,-j2-j3,j3,j2,-j3,j3+j3])
+        self.qz = np.zeros(7)
 
         j1= 0
         j2 = 0.3
