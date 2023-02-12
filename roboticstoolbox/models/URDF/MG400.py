@@ -59,10 +59,9 @@ class MG400(ERobot):
 
         j1= 0
         j2 = 0.1
-        j3 = 0.1
+        j3 = 0.4
         
-        j4=0.1
-        j5 = 0.1*100
+        j4=-j2-j3
         # self.qt = np.array([j1,j2,j3,j3,-j2-j3,j3,j2,-j3])
         self.qt = [j1,j2,j3,j4]
 
