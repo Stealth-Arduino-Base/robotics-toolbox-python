@@ -42,12 +42,12 @@ class MG400(ERobot):
             links,
             name=name,
             manufacturer="Dobot",            
-            gripper_links=links[6],
+            # gripper_links=links[6],
             urdf_string=urdf_string,
             urdf_filepath=urdf_filepath,
         )
 
-        self.grippers[0].tool = SE3(0, 0, 0)
+        # self.grippers[0].tool = SE3(0, 0, 0)
 
         #[j1,j2,j3_1,j3,j4_1,j4,j2_2,j3_2,j4_2]
         j1= 0
@@ -55,13 +55,16 @@ class MG400(ERobot):
         j3 = 1
         
         #[j1,j2,j3,   j3,j3,j3,j2,j3,j3]
-        self.qz = np.zeros(8)
+        self.qz = np.zeros(4)
 
         j1= 0
-        j2 = 0.3
-        j3 = 1
+        j2 = 0.1
+        j3 = 0.1
+        
+        j4=0.1
+        j5 = 0.1*100
         # self.qt = np.array([j1,j2,j3,j3,-j2-j3,j3,j2,-j3])
-        self.qt = np.array([j1,j2,-j2,-j2+j3,-j3,j2,-j2,j3])
+        self.qt = [j1,j2,j3,j4]
 
         self.addconfiguration("qz", self.qz)
         self.addconfiguration("qt", self.qt)

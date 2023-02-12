@@ -135,6 +135,15 @@
         </collision>
     </link>
 
+    <joint name="j3_1" type="revolute">
+        <!-- <origin xyz="-0.0010512570171516 0.0357748756218898 0.175001164344716" rpy="0 0 0"/> -->
+        <parent link="fake_link"/>
+        <child link="link3_1"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+        <mimic joint="j3_2" />
+    </joint>
+
     <link name="link4_1">
         <inertial>
             <origin xyz="0.0387878182928232 0.0170848333998282 -0.0024610990490942" rpy="0 0 0"/>
@@ -164,11 +173,12 @@
         </collision>
     </link>
 
+     <link name="fake_link" />
 
     <joint name="j3" type="revolute">
         <origin xyz="-0.0010512570171516 0.0357748756218898 0.175001164344716" rpy="0 0 0"/>
         <parent link="link2_1"/>
-        <child link="link3_1"/>
+        <child link="fake_link"/>
         <axis xyz="0 1 0"/>
         <limit lower="0" upper="1.39" effort="0" velocity="0"/>
     </joint>
@@ -182,5 +192,154 @@
         <mimic joint="j4_2" multiplier="-1" />
     </joint>
 
+    <link name="link5">
+        <inertial>
+            <origin xyz="4.24246458685662E-07 3.08507851181768E-14 -0.0349688816440933" rpy="0 0 0"/>
+            <mass value="0.0965276919819365"/>
+            <inertia
+                    ixx="4.98589992160928E-05"
+                    ixy="-1.534865545378E-12"
+                    ixz="3.46424449605658E-10"
+                    iyy="4.98589881725446E-05"
+                    iyz="-5.64890953414983E-17"
+                    izz="2.130463008359E-05"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link5.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link5.STL"/>
+            </geometry>
+        </collision>
+    </link>
 
+    <joint name="j4" type="revolute">
+        <origin xyz="0.0659996239003897 0.0170000000000371 0.031000800715573" rpy="0 0 0"/>
+        <parent link="link4_1"/>
+        <child link="link5"/>
+        <axis xyz="-1.19408295462994E-05 0 0.999999999928708"/>
+        <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+    </joint>
+
+    <link name="link2_2">
+        <inertial>
+            <origin xyz="-0.0201111131723385 0.0304999635268521 0.073632809340276" rpy="0 0 0"/>
+            <mass value="0.0662546292985346"/>
+            <inertia
+                    ixx="0.000218973873589181"
+                    ixy="3.0147933007673E-10"
+                    ixz="2.51402553227571E-06"
+                    iyy="0.000200510070261609"
+                    iyz="-1.41837669904595E-09"
+                    izz="3.74316777806776E-05"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link2_2.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link2_2.STL"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="j2_2" type="revolute">
+        <origin xyz="0.00452885682964267 -0.0305 0.141500000000001" rpy="0 0 0"/>
+        <parent link="link1"/>
+        <child link="link2_2"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+        <mimic joint="j2" />
+    </joint>
+
+    <link name="link3_2">
+        <inertial>
+            <origin xyz="0.0338566736074436 0.0240208873857428 0.00452229895926692" rpy="0 0 0"/>
+            <mass value="0.0366692789294813"/>
+            <inertia
+                    ixx="7.24011830695354E-06"
+                    ixy="7.93542746250724E-10"
+                    ixz="-1.69163254472566E-06"
+                    iyy="2.34967008246727E-05"
+                    iyz="4.55507111386579E-10"
+                    izz="1.66831643179488E-05"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link3_2.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link3_2.STL"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="j3_2" type="revolute">
+        <origin xyz="-0.00105049750546494 0.00649999999999986 0.174996846985851" rpy="0 0 0"/>
+        <parent link="link2_2"/>
+        <child link="link3_2"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+        <mimic joint="j2_2" multiplier="-1" />
+    </joint>
+
+    <link name="link4_2">
+        <inertial>
+            <origin xyz="0.0876391591012518 0.023499867452275 0.00831492252441945" rpy="0 0 0"/>
+            <mass value="0.0453569016333092"/>
+            <inertia
+                    ixx="2.00037596001325E-05"
+                    ixy="3.34474706250153E-09"
+                    ixz="2.17594982354756E-07"
+                    iyy="0.000132049841023893"
+                    iyz="5.36978669669685E-10"
+                    izz="0.000141813978894428"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link4_2.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mg400_description/meshes/link4_2.STL"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="j4_2" type="revolute">
+        <origin xyz="0.0678965856063864 0.000500000000000073 0.0119719999403219" rpy="0 0 0"/>
+        <parent link="link3_2"/>
+        <child link="link4_2"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+        <mimic joint="j3"/>
+    </joint>
 </robot>

@@ -6,15 +6,16 @@
 import roboticstoolbox as rp
 import numpy as np
 
-# Make a panda robot
-panda = rp.models.MG400()
+# Make a robot robot
+robot = rp.models.MG400()
 
 # Init joint to the 'ready' joint angles
-panda.q = panda.qr
+robot.q = robot.qz
 
 # Make 100 random sets of joint angles
-q = np.random.rand(100, 9)
+q = np.zeros(6)*100
+
 
 # Plot the joint trajectory with a 50ms delay between configurations
-panda.plot(q=q, backend='pyplot', dt=0.050)
-# panda.plot(q=q, backend='swift', dt=0.050, vellipse=False, fellipse=False)
+robot.plot(q=q, backend='pyplot', dt=1000)
+# robot.plot(q=q, backend='swift', dt=0.050, vellipse=False, fellipse=False)
