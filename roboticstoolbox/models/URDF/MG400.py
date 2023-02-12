@@ -63,15 +63,6 @@ class MG400(ERobot):
         # self.qt = np.array([j1,j2,j3,j3,-j2-j3,j3,j2,-j3])
         self.qt = [j1,j2,j3,j4]
 
-        # Make 100 random sets of joint angles
-        arr = np.random.rand(100, 4)
-
-
-        rows = 5
-        cols = 4
-
-        arr[:, 0] = 0
-        arr[:, -1] = - arr[:, 1] - arr[:, 2]
         self.addconfiguration("qz", self.qz)
         self.addconfiguration("qt", self.qt)
 

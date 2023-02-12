@@ -4,36 +4,44 @@
 """
 
 import swift
-import roboticstoolbox as rp
+import roboticstoolbox as rtb
+import spatialmath as sm
+import spatialgeometry as sg
 import numpy as np
+import random 
+import math
+import time
 
 
-# Create a puma in the default zero pose
-puma = rp.models.MG400()
-T = puma.fkine(puma.qr)
-print(T)
-# sol = puma.ikine_LM(T)
-# print("residual = ", np.linalg.norm(T - puma.fkine(sol.q)))
+# Create a robot in the default zero pose
+robot = rtb.models.MG400()
+robot.q = robot.qz
+
+env = swift.Swift()
+env.launch(realtime=True)
+env.add(robot, robot_alpha=True, collision_alpha=False)
+
+l_frame = sg.Axes(0.1)
+l_frame.attach_to(robot.links[-1])
+env.add(l_frame)
 
 
-# puma.q = puma.qz
-# env.add(puma, robot_alpha=True, collision_alpha=False)
+while True:
+    
+    Tep = sm.SE3.Rz(90*random.random(), unit='deg')*(robot.fkine(robot.qt)* sm.SE3.Trans(random.random()/10.0-0.02, 0,random.random()/10.0-0.08))
+    sol = robot.ikine_LM(Tep)
 
-# dt = 0.05
-# interp_time = 5
-# wait_time = 2
+    arrived = False
+    dt = 0.05
+    l_target = sg.Sphere(0.01, color=[0.2, 0.4, 0.65, 0.5], base=Tep)
+    l_target_frame = sg.Axes(0.1, base=Tep)
+    env.add(l_target)
+    env.add(l_target_frame)
+    robot.q = sol.q
+    gain = [1,1,1,1,1,1]
+    env.step(dt)
+    print("residual = ", np.linalg.norm(Tep - robot.fkine(sol.q)))
+    time.sleep(3)
 
-# poses = [puma.qr, puma.qz]
-
-# # Pass through the reference poses one by one.
-# # This ignores the robot collisions, and may pass through itself
-# for previous, target in zip(poses[:-1], poses[1:]):
-#     for alpha in np.linspace(0.0, 1.0, int(interp_time / dt)):
-#         puma.q = previous + alpha * (target - previous)
-#         env.step(dt)
-#     for _ in range(int(wait_time / dt)):
-#         puma.q = target
-#         env.step(dt)
-
-# # Uncomment to stop the browser tab from closing
+# Uncomment to stop the browser tab from closing
 # env.hold()
