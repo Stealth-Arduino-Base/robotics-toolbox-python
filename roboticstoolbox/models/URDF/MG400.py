@@ -36,13 +36,11 @@ class MG400(ERobot):
             "mg400_description/urdf/mg400.urdf"
         )
 
-        print(links,name,urdf_filepath)
         
         super().__init__(
             links,
             name=name,
             manufacturer="Dobot",            
-            # gripper_links=links[6],
             urdf_string=urdf_string,
             urdf_filepath=urdf_filepath,
         )
@@ -58,13 +56,22 @@ class MG400(ERobot):
         self.qz = np.zeros(4)
 
         j1= 0
-        j2 = 0.1
+        j2 = 0.2
         j3 = 0.4
         
         j4=-j2-j3
         # self.qt = np.array([j1,j2,j3,j3,-j2-j3,j3,j2,-j3])
         self.qt = [j1,j2,j3,j4]
 
+        # Make 100 random sets of joint angles
+        arr = np.random.rand(100, 4)
+
+
+        rows = 5
+        cols = 4
+
+        arr[:, 0] = 0
+        arr[:, -1] = - arr[:, 1] - arr[:, 2]
         self.addconfiguration("qz", self.qz)
         self.addconfiguration("qt", self.qt)
 
@@ -73,4 +80,3 @@ if __name__ == "__main__":  # pragma nocover
 
     r = MG400()
 
-    r.qz
